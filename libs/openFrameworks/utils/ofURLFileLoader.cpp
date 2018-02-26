@@ -196,11 +196,10 @@ ofHttpResponse ofURLFileLoaderImpl::handleRequest(const ofHttpRequest & request)
 
 	curl_easy_setopt(curl.get(), CURLOPT_HTTPHEADER, headers);
 
-    std::string body = request.body;
+	std::string body = request.body;
 
 	// set body if there's any
 	if(request.body!=""){
-		curl_easy_setopt(curl.get(), CURLOPT_UPLOAD, 1L);
 		curl_easy_setopt(curl.get(), CURLOPT_POSTFIELDSIZE, request.body.size());
         //curl_easy_setopt(curl.get(), CURLOPT_POSTFIELDS, request.body.c_str());
         curl_easy_setopt(curl.get(), CURLOPT_READFUNCTION, readBody_cb);
